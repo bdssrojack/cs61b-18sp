@@ -2,7 +2,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestPalindrome {
-    /*// You must use this palindrome, and not instantiate
+    // You must use this palindrome, and not instantiate
     // new Palindromes, or the autograder might be upset.
     static Palindrome palindrome = new Palindrome();
 
@@ -14,5 +14,41 @@ public class TestPalindrome {
             actual += d.removeFirst();
         }
         assertEquals("persiflage", actual);
-    } Uncomment this class once you've created your Palindrome class. */
+    }
+
+    @Test
+    public void testIsPalindrome() {
+        boolean b1 = palindrome.isPalindrome("tenet");
+        boolean b2 = palindrome.isPalindrome("Tenet");
+        boolean b3 = palindrome.isPalindrome("a");
+        boolean b4 = palindrome.isPalindrome("");
+        assertEquals(true, b1);
+        assertEquals(false, b2);
+        assertEquals(true, b3);
+        assertEquals(true, b4);
+    }
+
+    @Test
+    public void testIsPalindromeOffByOne() {
+        OffByOne offByOne = new OffByOne();
+        boolean b1 = offByOne.isPalindrome("tenet");
+        boolean b2 = offByOne.isPalindrome("this");
+        boolean b3 = offByOne.isPalindrome("a");
+        boolean b4 = offByOne.isPalindrome(" ");
+        assertEquals(false, b1);
+        assertEquals(true, b2);
+        assertEquals(true, b3);
+        assertEquals(true, b4);
+    }
+
+    @Test
+    public  void testIsPalindromeCC() {
+        CharacterComparator cc = new OffByOne();
+        boolean b1 = palindrome.isPalindrome("tenet", cc);
+        boolean b2 = palindrome.isPalindrome("this", cc);
+        boolean b3 = palindrome.isPalindrome("This", cc);
+        assertEquals(false, b1);
+        assertEquals(true, b2);
+        assertEquals(false, b3);
+    }
 }
