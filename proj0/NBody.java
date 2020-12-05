@@ -2,7 +2,7 @@
 
 public class NBody{
 	
-	//读取宇宙半径
+	//read radius
 	public static double readRadius(String sourse){
 		In in = new In(sourse);
 		double num = in.readDouble();
@@ -10,7 +10,7 @@ public class NBody{
 		return radius;
 	}
 	
-	//读取行星
+	//read planets
 	public static Planet[] readPlanets(String sourse){
 		
 		In in = new In(sourse);
@@ -34,27 +34,27 @@ public class NBody{
 	}
 	
 	public static void main(String[] args){
-		/*设置命令行参数*/
+		/*set parameters of command line*/
 		double T = Double.parseDouble(args[0]);
 		double dt = Double.parseDouble(args[1]);
 		String filename = args[2];
 		
-		/*读取半径和行星*/
+		/*read radius and planets*/
 		double radius = readRadius(filename);
 		Planet[] planets = readPlanets(filename);
 		
-		/*绘制背景*/
+		/*draw the background*/
 		StdDraw.setScale(-radius, radius);
 		StdDraw.clear();
 		StdDraw.picture(0, 0, "images/starfield.jpg");
 		StdDraw.show();
 		
-		/*绘制行星*/
+		/*draw planets*/
 		for(Planet p : planets){
 			p.draw();
 		}
 		
-		StdDraw.enableDoubleBuffering();//防止画面闪烁
+		StdDraw.enableDoubleBuffering();//anti-flicker
 		
 		double time = 0;
 		for(time = 0; time<T; time++){
