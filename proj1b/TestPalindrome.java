@@ -32,7 +32,7 @@ public class TestPalindrome {
     public void testIsPalindromeOffByOne() {
         OffByOne offByOne = new OffByOne();
         boolean b1 = offByOne.isPalindrome("tenet");
-        boolean b2 = offByOne.isPalindrome("this");
+        boolean b2 = offByOne.isPalindrome("detrude");
         boolean b3 = offByOne.isPalindrome("a");
         boolean b4 = offByOne.isPalindrome(" ");
         assertEquals(false, b1);

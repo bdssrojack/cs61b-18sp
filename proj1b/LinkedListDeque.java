@@ -125,18 +125,18 @@ public class LinkedListDeque<T> implements Deque<T> {
         if (index >= size) {
             return null;
         }
-        if (index < size/2) {
+        if (index < size / 2) {
             ItemNode p = sentF;
             for (int i = 0; i <= index; i++) {
                 p = p.next;
             }
             return p.item;
         } else {
-           ItemNode p = sentB;
-           for (int i = 0; i <= index; i++) {
-               p = p.prev;
-           }
-           return p.item;
+            ItemNode p = sentB;
+            for (int i = 0; i <= index; i++) {
+                p = p.prev;
+            }
+            return p.item;
         }
     }
 

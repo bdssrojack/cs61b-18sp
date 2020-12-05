@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+
 
 public class Palindrome {
 
@@ -11,7 +11,7 @@ public class Palindrome {
         return deque;
     }
 
-    public boolean isPalindrome(String word){
+    public boolean isPalindrome(String word) {
         LinkedListDeque<Character> deque = (LinkedListDeque) wordToDeque(word);
 
         if (deque.size() == 0 || deque.size() == 1) {
@@ -33,11 +33,11 @@ public class Palindrome {
             return true;
         }
 
-        double halfSize = size/2.0;
+        double halfSize = size / 2.0;
         int i = 0;
 
         while (size >= halfSize) {
-            if (!cc.equalChars(word.charAt(i), word.charAt(size-1))) {
+            if (!cc.equalChars(word.charAt(i), word.charAt(size - 1))) {
                 return false;
             }
             size--;
