@@ -1,8 +1,8 @@
 
 
 public class NBody{
-	
-	//read radius
+
+
 	public static double readRadius(String sourse){
 		In in = new In(sourse);
 		double num = in.readDouble();
@@ -10,7 +10,7 @@ public class NBody{
 		return radius;
 	}
 	
-	//read planets
+
 	public static Planet[] readPlanets(String sourse){
 		
 		In in = new In(sourse);
@@ -34,27 +34,27 @@ public class NBody{
 	}
 	
 	public static void main(String[] args){
-		/*set parameters of command line*/
+
 		double T = Double.parseDouble(args[0]);
 		double dt = Double.parseDouble(args[1]);
 		String filename = args[2];
 		
-		/*read radius and planets*/
+
 		double radius = readRadius(filename);
 		Planet[] planets = readPlanets(filename);
 		
-		/*draw the background*/
+
 		StdDraw.setScale(-radius, radius);
 		StdDraw.clear();
 		StdDraw.picture(0, 0, "images/starfield.jpg");
 		StdDraw.show();
 		
-		/*draw planets*/
+
 		for(Planet p : planets){
 			p.draw();
 		}
 		
-		StdDraw.enableDoubleBuffering();//anti-flicker
+		StdDraw.enableDoubleBuffering();
 		
 		double time = 0;
 		for(time = 0; time<T; time++){
