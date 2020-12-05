@@ -5,7 +5,7 @@
     The starting size of your array should be 8.
  */
 
-public class ArrayDeque <T> {
+public class ArrayDeque<T> {
     private T[] items;
     private int size;
 
@@ -33,7 +33,7 @@ public class ArrayDeque <T> {
 
     // Adds an item of type T to the back of the deque.
     public void addLast(T item) {
-        if(items.length == size){
+        if (items.length == size) {
             T[] a = (T[]) new Object[size * 2];
             System.arraycopy(items, 0, a, 0, size);
             items = a;
@@ -66,7 +66,7 @@ public class ArrayDeque <T> {
         }
         T item = items[0];
         T[] a = (T[]) new Object[size];
-        System.arraycopy(items, 1, a, 0, size-1);
+        System.arraycopy(items, 1, a, 0, size - 1);
         items = a;
         size--;
         return item;
@@ -79,7 +79,7 @@ public class ArrayDeque <T> {
         }
         T item = items[size - 1];
         items[size - 1] = null;
-        if ( (double)size/items.length <= 0.25) {
+        if ((double) size / items.length <= 0.25) {
             T[] a = (T[]) new Object[size];
             System.arraycopy(items, 0, a, 0, size);
             items = a;
