@@ -12,7 +12,7 @@ public class OffByN implements CharacterComparator {
         return false;
     }
 
-/*    private boolean isPalindrome(String word) {
+    private boolean isPalindrome(String word) {
         int size = word.length();
 
         if (size == 0 || size == 1) {
@@ -31,5 +31,5 @@ public class OffByN implements CharacterComparator {
         }
 
         return true;
-    }*/
+    }
 }
