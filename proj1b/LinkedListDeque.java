@@ -8,7 +8,7 @@
  * @param <T>
  */
 
-public class LinkedListDeque<T> implements Deque<T>{
+public class LinkedListDeque<T> implements Deque<T> {
 
     private ItemNode sentF;
     private ItemNode sentB;

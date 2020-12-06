@@ -5,7 +5,7 @@
     The starting size of your array should be 8.
  */
 
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T> {
     private T[] items;
     private int size;
 

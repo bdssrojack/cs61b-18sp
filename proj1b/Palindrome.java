@@ -36,7 +36,7 @@ public class Palindrome {
         double halfSize = size / 2.0;
         int i = 0;
 
-        while (size >= halfSize) {
+        while (size >= halfSize + 1) {
             if (!cc.equalChars(word.charAt(i), word.charAt(size - 1))) {
                 return false;
             }

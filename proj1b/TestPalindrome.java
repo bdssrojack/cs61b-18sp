@@ -43,9 +43,9 @@ public class TestPalindrome {
 
     @Test
     public  void testIsPalindromeCC() {
-        CharacterComparator cc = new OffByOne();
+        CharacterComparator cc = new OffByN(5);
         boolean b1 = palindrome.isPalindrome("tenet", cc);
-        boolean b2 = palindrome.isPalindrome("this", cc);
+        boolean b2 = palindrome.isPalindrome("binding", cc);
         boolean b3 = palindrome.isPalindrome("This", cc);
         assertEquals(false, b1);
         assertEquals(true, b2);
