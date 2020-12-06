@@ -142,7 +142,7 @@ public class LinkedListDeque<T> {
 
     // Same as get, but uses recursion.
     public T getRecursive(int index) {
-        if (index >= size || index < 0) {
+        if (index >= size || index < 0  || this.isEmpty()) {
             return null;
         }
         if (index == 0) {

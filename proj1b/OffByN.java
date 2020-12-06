@@ -22,7 +22,7 @@ public class OffByN implements CharacterComparator {
         double halfSize = size / 2.0;
         int i = 0;
 
-        while (size >= halfSize) {
+        while (size >= halfSize + 1) {
             if (!equalChars(word.charAt(i), word.charAt(size - 1))) {
                 return false;
             }
