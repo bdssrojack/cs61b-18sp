@@ -12,6 +12,7 @@ public class LinkedListDeque<T> {
 
     private ItemNode sentF;
     private ItemNode sentB;
+    private ItemNode head;
     private int size;
 
     private class ItemNode {
@@ -29,8 +30,10 @@ public class LinkedListDeque<T> {
     public LinkedListDeque() {
         sentF = new ItemNode(null, null, null);
         sentB = new ItemNode(null, null, null);
+        head = sentF.next;
         sentF.next = sentB;
         sentB.prev = sentF;
+        head = sentF.next;
         size = 0;
     }
 
@@ -40,6 +43,7 @@ public class LinkedListDeque<T> {
         sentB = new ItemNode(null, null, null);
         sentF.next = new ItemNode(x, sentF, sentB);
         sentB.prev = sentF.next;
+        head = sentF.next;
         size = 1;
     }
 
@@ -48,6 +52,7 @@ public class LinkedListDeque<T> {
         sentF.next = new ItemNode(item, sentF, sentF.next);
         sentF.next.next.prev = sentF.next;
         size += 1;
+        head = sentF.next;
     }
 
     // Adds an item of type T to the back of the deque.
@@ -91,6 +96,7 @@ public class LinkedListDeque<T> {
         sentF.next = sentF.next.next;
         sentF.next.prev = sentF;
         size -= 1;
+        head = sentF.next;
         return t;
     }
 
@@ -114,7 +120,7 @@ public class LinkedListDeque<T> {
         If no such item exists, returns null. Must not alter the deque!
     */
     public T get(int index) {
-        if (index >= size) {
+        if (index >= size || index < 0) {
             return null;
         }
         if (index < size / 2) {
@@ -133,12 +139,14 @@ public class LinkedListDeque<T> {
     }
 
     // Same as get, but uses recursion.
-/*    public T getRecursive(int index) {
-        if (index == 0) {
-            return item;
+    public T getRecursive(int index) {
+        if (index >= size || index < 0) {
+            return null;
         }
-        index --;
-        return;
-
-    }*/
+        if (index == 0) {
+            return head.item;
+        }
+        head = head.next;
+        return getRecursive(index - 1);
+    }
 }
