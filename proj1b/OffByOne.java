@@ -8,7 +8,7 @@ public class OffByOne implements CharacterComparator {
         return false;
     }
 
-    private boolean isPalindrome(String word) {
+    public boolean isPalindrome(String word) {
         int size = word.length();
 
         if (size == 0 || size == 1) {

@@ -37,7 +37,7 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    // Creates a deque with one element.
+/*    // Creates a deque with one element.
     public LinkedListDeque(T x) {
         sentF = new ItemNode(null, null, null);
         sentB = new ItemNode(null, null, null);
@@ -45,7 +45,7 @@ public class LinkedListDeque<T> {
         sentB.prev = sentF.next;
         head = sentF.next;
         size = 1;
-    }
+    }*/
 
     // Adds an item of type T to the front of the deque.
     public void addFirst(T item) {
@@ -131,7 +131,7 @@ public class LinkedListDeque<T> {
             return p.item;
         } else {
             ItemNode p = sentB;
-            for (int i = 0; i <= index; i++) {
+            for (int i = 0; i <= size - index - 1; i++) {
                 p = p.prev;
             }
             return p.item;
