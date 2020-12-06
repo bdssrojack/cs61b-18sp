@@ -60,6 +60,7 @@ public class LinkedListDeque<T> {
         sentB.prev = new ItemNode(item, sentB.prev, sentB);
         sentB.prev.prev.next = sentB.prev;
         size += 1;
+        head = sentF.next;
     }
 
     // Returns the number of items in the deque.
@@ -112,6 +113,7 @@ public class LinkedListDeque<T> {
         sentB.prev = sentB.prev.prev;
         sentB.prev.next = sentB;
         size -= 1;
+        head = sentF.next;
         return t;
     }
 

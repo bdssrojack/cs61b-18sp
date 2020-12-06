@@ -68,7 +68,7 @@ public class ArrayDeque<T> {
 
     // Removes and returns the item at the back of the deque. If no such item exists, returns null.
     public T removeLast() {
-        if (size <= 0) {
+        if (this.isEmpty()) {
             return null;
         }
         T item = items[size - 1];
@@ -85,7 +85,7 @@ public class ArrayDeque<T> {
         if (index >= size || index < 0) {
             return null;
         }
-        return items[index - 1];
+        return items[index];
     }
 
 
