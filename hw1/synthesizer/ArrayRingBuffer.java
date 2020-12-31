@@ -22,6 +22,39 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         rb = (T[]) new Object[capacity];
     }
 
+    public Iterator<T> iterator() {
+        return new ArrayRingBufferIterator();
+    }
+
+    private class ArrayRingBufferIterator implements Iterator<T> {
+        private int index;
+
+        public ArrayRingBufferIterator() {
+            index = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (index == first) {
+                return first != last;
+            } else if (index < first || (index > first && first < last)) {
+                return index < last;
+            } else { //index > first && first > last
+                return true;
+            }
+        }
+
+        @Override
+        public T next() {
+            T item = rb[index];
+            index++;
+            if (index == capacity) {
+                index = 0;
+            }
+            return item;
+        }
+    }
+
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
      * throw new RuntimeException("Ring buffer overflow"). Exceptions
@@ -64,7 +97,5 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     public T peek() {
         return rb[first];
     }
-
-    //TODO: When you get to part 5, implement the needed code to support iteration.
 
 }
