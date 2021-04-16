@@ -22,7 +22,11 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     }
 
     public MyHashMap() {
-        buckets = new ArrayMap[DEFAULT_SIZE];
+        this(DEFAULT_SIZE);
+    }
+
+    public MyHashMap(int initialsize) {
+        buckets = new ArrayMap[initialsize];
         this.clear();
     }
 
@@ -60,9 +64,10 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-//        if (loadFactor() > MAX_LF) {
-//            resize();
-//        }
+        if (loadFactor() > MAX_LF) {
+            resize(buckets.length * 2);
+        }
+
         int n = hash(key);
         if (!buckets[n].containsKey(key)) {
             size++;
@@ -70,20 +75,17 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         buckets[n].put(key, value);
     }
 
-//    private void resize() {
-//        ArrayMap<K, V>[] newbuckets = new ArrayMap[buckets.length * 2];
-//        ArrayMap<K, V>[] temp = buckets;
-//        buckets = newbuckets;
-//
-//        for (int i = 0; i < buckets.length; i += 1) {
-//            buckets[i] = new ArrayMap<>();
-//        }
-//        for (int i = 0; i < temp.length; i++) {
-//            for (K k : temp[i].keySet()) {
-//                buckets[i].put(k, get(k));
-//            }
-//        }
-//    }
+    private void resize(int m) {
+        MyHashMap<K, V> temp = new MyHashMap<>(m);
+
+        for (int i = 0; i < this.buckets.length; i++) {
+            for (K k : this.buckets[i].keySet()) {
+                temp.put(k, get(k));
+            }
+        }
+
+        this.buckets = temp.buckets;
+    }
 
     /* Returns the number of key-value mappings in this map. */
     @Override
