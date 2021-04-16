@@ -57,6 +57,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
+        if (key == null) throw new IllegalArgumentException("argument to get() is null");
         int i = hash(key);
         return buckets[i].get(key);
     }
@@ -64,6 +65,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
+        if (key == null) throw new IllegalArgumentException("argument to put() is null");
         if (loadFactor() > MAX_LF) {
             resize(buckets.length * 2);
         }

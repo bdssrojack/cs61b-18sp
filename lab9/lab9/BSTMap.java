@@ -62,6 +62,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
+        if (key == null) throw new IllegalArgumentException("argument to get() is null");
         return getHelper(key, root);
     }
 
@@ -88,6 +89,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
      */
     @Override
     public void put(K key, V value) {
+        if (key == null) throw new IllegalArgumentException("argument to put() is null");
         if (!containsKey(key)) {
             size++;
         }
