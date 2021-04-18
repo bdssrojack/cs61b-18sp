@@ -204,8 +204,24 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     @Override
     public void changePriority(T item, double priority) {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Priority queue underflow");
+        }
+        changePriorityHelper(item, priority, 1);
+    }
 
-        return;
+    /**
+     * index is the current node we reached during the recursive search.
+     */
+    public void changePriorityHelper(T item, double priority, int index) {
+        if (!inBounds(index)) {
+            return;
+        }
+        if (item.equals(getNode(index).myItem)) {
+            getNode(index).myPriority = priority; //search hit!
+        }
+        changePriorityHelper(item, priority, rightIndex(index));
+        changePriorityHelper(item, priority, leftIndex(index));
     }
 
     /**
@@ -445,6 +461,22 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             assertEquals(expected[i], pq.removeMin());
             i += 1;
         }
+    }
+
+    @Test
+    public void testChangePriority() {
+        ArrayHeap<String> pq = new ArrayHeap<>();
+        pq.insert("i", 9);
+        pq.insert("g", 7);
+        pq.insert("d", 4);
+        pq.insert("a", 1);
+        pq.insert("h", 8);
+        pq.insert("e", 5);
+        pq.insert("b", 2);
+        pq.insert("c", 3);
+        pq.changePriority( "i", 0);
+        System.out.println(pq);
+        assertEquals(0, pq.contents[8].myPriority,0.000);
     }
 
 }
