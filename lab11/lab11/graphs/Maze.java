@@ -261,7 +261,7 @@ public class Maze implements Observer {
 
     // generate the maze starting from lower left
     private void generateSingleGapMaze() {
-        boolean[][] marked = new boolean[N + 2][N + 2];
+        boolean[][] marked = new boolean[N + 2][N + 2]; // define the bound
         for (int x = 0; x < N + 2; x++) {
             marked[x][0] = marked[x][N + 1] = true;
         }
@@ -454,7 +454,7 @@ public class Maze implements Observer {
 
 
     // a test client
-   /* public static void main(String[] args) {
+    /*public static void main(String[] args) {
         int N = Integer.parseInt(args[0]);
         int rseed = Integer.parseInt(args[1]);
 

@@ -32,10 +32,15 @@ public class MergeSort {
     }
 
     /** Returns a queue of queues that each contain one item from items. */
-    private static <Item extends Comparable> Queue<Queue<Item>>
-            makeSingleItemQueues(Queue<Item> items) {
+    private static <Item extends Comparable> Queue<Queue<Item>> makeSingleItemQueues(Queue<Item> items) {
         // Your code here!
-        return null;
+        Queue<Queue<Item>> qs = new Queue<>();
+        for (Item i : items) {
+            Queue<Item> qq = new Queue<>();
+            qq.enqueue(i);
+            qs.enqueue(qq);
+        }
+        return qs;
     }
 
     /**
