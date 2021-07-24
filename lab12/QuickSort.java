@@ -45,15 +45,50 @@ public class QuickSort {
      *                  all of the items in unsorted that are greater than the given pivot.
      */
     private static <Item extends Comparable> void partition(
-            Queue<Item> unsorted, Item pivot,
-            Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
-        // Your code here!
+            Queue<Item> unsorted, Item pivot, Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
+        for (Item i : unsorted) {
+            if (i.equals(pivot)) {
+                equal.enqueue(i);
+            } else if (i.compareTo(pivot) < 0) {
+                less.enqueue(i);
+            } else
+                greater.enqueue(i);
+        }
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
-    public static <Item extends Comparable> Queue<Item> quickSort(
-            Queue<Item> items) {
-        // Your code here!
+    public static <Item extends Comparable> Queue<Item> quickSort(Queue<Item> items) {
+        if (items.size() <= 1)
+            return items;
+        Queue<Item> greater = new Queue<>();
+        Queue<Item> equal = new Queue<>();
+        Queue<Item>  less = new Queue<>();
+        Item pivot = getRandomItem(items);
+        partition(items, pivot, less, equal, greater);
+        less = quickSort(less);
+        greater = quickSort(greater);
+        items = catenate(catenate(less,equal), greater);
         return items;
     }
+
+    public static void main(String[] args) {
+        Queue<Integer> studentsID = new Queue<>();
+        for (int i = 0; i < 57832; i++) {
+            studentsID.enqueue((int)(1+Math.random()*100000));
+        }
+
+        long startTime =  System.currentTimeMillis();
+        studentsID = quickSort(studentsID);
+        long endTime =  System.currentTimeMillis();
+        System.out.println((endTime-startTime)+"ms");
+
+        while (studentsID.size() > 1) {
+            int f = studentsID.dequeue();
+//            System.out.println(f);
+            if (f > studentsID.peek()) {
+                System.out.println("wrong solution!");
+            }
+        }
+    }
+
 }

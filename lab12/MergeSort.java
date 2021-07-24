@@ -11,8 +11,7 @@ public class MergeSort {
      * @param   q2  A Queue in sorted order from least to greatest.
      * @return      The smallest item that is in q1 or q2.
      */
-    private static <Item extends Comparable> Item getMin(
-            Queue<Item> q1, Queue<Item> q2) {
+    private static <Item extends Comparable> Item getMin(Queue<Item> q1, Queue<Item> q2) {
         if (q1.isEmpty()) {
             return q2.dequeue();
         } else if (q2.isEmpty()) {
@@ -33,7 +32,6 @@ public class MergeSort {
 
     /** Returns a queue of queues that each contain one item from items. */
     private static <Item extends Comparable> Queue<Queue<Item>> makeSingleItemQueues(Queue<Item> items) {
-        // Your code here!
         Queue<Queue<Item>> qs = new Queue<>();
         for (Item i : items) {
             Queue<Item> qq = new Queue<>();
@@ -56,16 +54,47 @@ public class MergeSort {
      *              greatest.
      *
      */
-    private static <Item extends Comparable> Queue<Item> mergeSortedQueues(
-            Queue<Item> q1, Queue<Item> q2) {
-        // Your code here!
-        return null;
+    private static <Item extends Comparable> Queue<Item> mergeSortedQueues(Queue<Item> q1, Queue<Item> q2) {
+        Queue<Item> Q = new Queue<>();
+        while (!(q1.isEmpty() && q2.isEmpty())) {
+            Q.enqueue(getMin(q1, q2));
+        }
+        return Q;
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
-    public static <Item extends Comparable> Queue<Item> mergeSort(
-            Queue<Item> items) {
-        // Your code here!
-        return items;
+    public static <Item extends Comparable> Queue<Item> mergeSort(Queue<Item> items) {
+        if (items.size() == 1 || items.isEmpty())
+            return items;
+
+        int size = 0;
+        Queue<Queue<Item>> Q = makeSingleItemQueues(items);
+
+        while (size != 1) {
+            for (int sz = 1; sz <= size/2; sz += 1) {
+                Q.enqueue(mergeSortedQueues(Q.dequeue(), Q.dequeue()));
+            }
+            size = Q.size();
+        }
+        return Q.peek();
     }
+
+    public static void main(String[] args) {
+        Queue<Integer> studentsID = new Queue<>();
+        for (int i = 0; i < 57832; i++) {
+            studentsID.enqueue((int)(1+Math.random()*100000));
+        }
+
+        long startTime =  System.currentTimeMillis();
+        studentsID = mergeSort(studentsID);
+        long endTime =  System.currentTimeMillis();
+        System.out.println((endTime-startTime)+"ms");
+
+        while (studentsID.size() > 1) {
+            int f = studentsID.dequeue();
+            if (f > studentsID.peek())
+                System.out.println("wrong solution!");
+        }
+    }
+
 }
